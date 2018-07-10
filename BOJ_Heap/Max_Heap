@@ -30,7 +30,8 @@ int pop()
 			i = i * 2 + 1;
 		}
 	}
-	
+
+	return ans;
 }
 
 void push(int x)
@@ -53,20 +54,19 @@ void push(int x)
 
 int main() 
 {
-	int t;
+	int tc, i, T;
+	int X;
 
-	scanf("%d", &t);
+	scanf("%d", &T);
 
-	while (t--) {
+	for (tc = 0; tc < T;tc++)
+	{
+		scanf("%d", &X);
 
-		int x;
-		scanf("%d", &x);
-
-		if (x == 0)
+		if (X == 0)
 			if (hn == 0) printf("0\n");
 			else printf("%d\n", pop());
-		else push(x);
-
+		else push(X);
 	}
 
 	return 0;
