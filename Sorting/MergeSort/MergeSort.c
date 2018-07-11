@@ -10,6 +10,7 @@ void MergeTwoArea(int arr[], int left, int mid, int right)
 	int *sortArr = (int*)malloc(sizeof(int)*(right + 1));
 	int sIdx = left;
 
+	// 병합 할 두 영역의 데이터들을 비교, 정렬순서대로 sortArr에 하나씩 옮김.
 	while (fIdx <= mid && rIdx <= right)
 	{
 		if (arr[fIdx] <= arr[rIdx]) sortArr[sIdx] = arr[fIdx++];
@@ -20,11 +21,13 @@ void MergeTwoArea(int arr[], int left, int mid, int right)
 
 	if (fIdx > mid)
 	{
+		// 뒷부분 처리.
 		for (i = rIdx; i <= right; i++, sIdx++)
 			sortArr[sIdx] = arr[i];
 	}
 	else
 	{
+		// 앞부분 처리.
 		for (i = fIdx; i <= mid;i++, sIdx++)
 			sortArr[sIdx] = arr[i];
 	}
@@ -39,13 +42,15 @@ void MergeSort(int arr[], int left, int right)
 {
 	int mid;
 
-	if (left < right)
+	if (left < right) // 더 나눌 수 있다는 뜻.
 	{
 		mid = (left + right) / 2;
 
+		//둘로 나눠 정렬.
 		MergeSort(arr, left, mid);
 		MergeSort(arr, mid + 1, right);
 
+		// 정렬된 두 배열 병합
 		MergeTwoArea(arr, left, mid, right);
 	}
 }
